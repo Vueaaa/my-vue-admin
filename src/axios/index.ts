@@ -6,12 +6,10 @@ const service = axios.create({
   baseURL: import.meta.env.VITE_WS_URL as string, // 从环境变量中获取基础API URL
   timeout: 10000 // 请求超时时间
 })
-console.log(service,'ser');
-
 
 // 请求拦截器
 service.interceptors.request.use(
-  (config: AxiosRequestConfig): AxiosRequestConfig => {
+  (config: AxiosRequestConfig): AxiosRequestConfig => {    
     // 在发送请求前做些什么，例如设置令牌
     const token = localStorage.getItem('token')
     if (token) {

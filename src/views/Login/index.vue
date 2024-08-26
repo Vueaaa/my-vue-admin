@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { reactive } from 'vue';
+import { ref,reactive } from 'vue';
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import service from '../../axios/index'
 
@@ -8,9 +8,11 @@ interface LoginInfo {
     password: string;
 }
 const param = reactive<LoginInfo>({
-    username: '',
-    password: '',
+    username: 'huxin',
+    password: '123456',
 });
+const loginRulesFormRef = ref<FormInstance>()
+
 const rules: FormRules = {
     username: [
         {
@@ -21,6 +23,27 @@ const rules: FormRules = {
     ],
     password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
 };
+
+const login = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  await formEl.validate(async (valid) => {
+    if (valid) {
+      service
+        .post('/api/auth/login', param)
+        .then((response) => {
+          if (response.status === 201) {
+            ElMessage({
+              message: '登录成功！！',
+              type: 'success'
+            })
+          }
+        })
+        .catch((error) => {
+          ElMessage.error(error.message || 'An error occurred.')
+        })
+    }
+  })
+}
 
 
     
@@ -34,7 +57,7 @@ const rules: FormRules = {
                 <img class="logo mr10" src="../../assets/img/logo.png">
                 <div class="login-title">后台管理系统</div>
             </div>
-            <el-form :model="param" :rules="rules" ref="login" size="large">
+            <el-form :model="param" :rules="rules" ref="loginRulesFormRef" size="large">
                 <el-form-item prop="username">
                     <el-input v-model="param.username" placeholder="用户名">
                         <template #prepend>
@@ -49,7 +72,7 @@ const rules: FormRules = {
                         type="password"
                         placeholder="密码"
                         v-model="param.password"
-                        @keyup.enter="login"
+                        @keyup.enter="login(loginRulesFormRef)"
                     >
                         <template #prepend>
                             <el-icon>
@@ -58,7 +81,7 @@ const rules: FormRules = {
                         </template>
                     </el-input>
                 </el-form-item>
-                <el-button class="login-btn" type="primary" size="large" @click="login">登录</el-button>
+                <el-button class="login-btn" type="primary" size="large" @click="login(loginRulesFormRef)">登录</el-button>
             </el-form>
         </div>
     </div>
