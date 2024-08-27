@@ -1,5 +1,6 @@
 <script setup lang='ts'>
-import FHeader from "@/layouts/components/FHeader.vue";
+import FHeader from "./components/FHeader.vue";
+import FMenu from "./components/FMenu.vue";
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import FHeader from "@/layouts/components/FHeader.vue";
     </el-header>
     <el-container>
       <el-aside>
+        <FMenu></FMenu>
       </el-aside>
       <el-main >
       </el-main>

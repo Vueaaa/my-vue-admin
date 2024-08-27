@@ -86,6 +86,7 @@ const setFullScreen = () => {
             font-size: 17px;
             color: #fff;
             padding-left: 6px;
+            cursor: pointer;
         }
     }
 
