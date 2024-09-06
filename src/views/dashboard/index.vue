@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-
+import { dashOpt1 } from "../chart/options";
 </script>
 
 <template>
@@ -48,6 +48,26 @@
                 </div>
             </el-card>
         </el-col>
+    </el-row>
+    <el-row :gutter="20" class="mgb20">
+            <el-col :span="18">
+                <el-card shadow="hover">
+                    <div class="card-header">
+                        <p class="card-header-title">订单动态</p>
+                        <p class="card-header-desc">最近一周订单状态，包括订单成交量和订单退货量</p>
+                    </div>
+                    <!-- <v-chart class="chart" :option="dashOpt1" /> -->
+                </el-card>
+            </el-col>
+            <el-col :span="6">
+                <el-card shadow="hover">
+                    <div class="card-header">
+                        <p class="card-header-title">品类分布</p>
+                        <p class="card-header-desc">最近一个月销售商品的品类情况</p>
+                    </div>
+                    <!-- <v-chart class="chart" :option="dashOpt2" /> -->
+                </el-card>
+            </el-col>
     </el-row>
 </template>
 
@@ -111,4 +131,25 @@
         font-size: 30px;
     }
 }
+.card-header {
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.card-header-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.card-header-desc {
+    font-size: 14px;
+    color: #999;
+}
+
+.chart {
+    width: 100%;
+    height: 400px;
+}
+
 </style>
