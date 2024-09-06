@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { dashOpt1 } from "../chart/options";
+
 </script>
 
 <template>
