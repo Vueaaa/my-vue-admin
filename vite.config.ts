@@ -22,9 +22,9 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  // server: {
-  //   host: '0.0.0.0', //ip地址
-  //   port: 5173, // 设置服务启动端口号
+  server: {
+    host: '0.0.0.0', // 使得网络中的其他设备可以访问
+    port: 5173, // 设置服务启动端口号
   //   open: false, // 设置服务启动时是否自动打开浏览器
   //   cors: true, // 允许跨域
 
@@ -37,5 +37,5 @@ export default defineConfig({
   //       // rewrite: (path) => path.replace('/api/', '')
   //     }
   //   }
-  // }
+  }
 })
